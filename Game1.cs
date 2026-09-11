@@ -11,9 +11,6 @@ public class Game1 : Game
     {
         private MarioSprite _sprite; //connected directy to sprite class
 
-        public Controller(MarioSprite sprite){
-            _sprite = sprite;
-        }
         public void HandleInput(){
             var state = Keyboard.GetState();
             if(state.IsKeyDown(Keys.W)){
@@ -45,6 +42,10 @@ public class Game1 : Game
                     _sprite.facingDirection = false;
                 }
             }
+        }
+
+         public Controller(MarioSprite sprite){
+            _sprite = sprite;
         }
 
     }
