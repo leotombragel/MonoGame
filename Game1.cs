@@ -7,18 +7,46 @@ namespace MonoGame;
 
 public class Game1 : Game
 {
-
-    public class MarioCharacter
+    public class Controller : IController
     {
-        public enum movingState { idle, left, right, up, down};
-        public movingState state;
-         public Vector2 pos;
+        private MarioSprite _sprite; //connected directy to sprite class
 
-         public void Constructor()
-        {
-            pos = new Vector2(400, 200);
-            this.state = movingState.idle;
+        public Controller(MarioSprite sprite){
+            _sprite = sprite;
         }
+        public void HandleInput(){
+            var state = Keyboard.GetState();
+            if(state.IsKeyDown(Keys.W)){
+                _sprite.pos.Y -= 5; 
+                _sprite.state = MarioSprite.movingState.up;
+            }
+            else if(state.IsKeyDown(Keys.S)){
+                _sprite.pos.Y += 5; 
+                _sprite.state = MarioSprite.movingState.down;
+            }
+            else if(state.IsKeyDown(Keys.A)){
+                _sprite.pos.X -= 5; 
+                _sprite.state = MarioSprite.movingState.left;
+            }
+            else if(state.IsKeyDown(Keys.D)){
+                _sprite.pos.X += 5; 
+                _sprite.state = MarioSprite.movingState.right;
+            }
+            else{
+                _sprite.state = MarioSprite.movingState.idle;
+            }
+
+            MouseState mouse = Mouse.GetState();
+            if (mouse.LeftButton == ButtonState.Pressed){
+                
+                if(mouse.X > _sprite.pos.X){
+                    _sprite.facingDirection = true;
+                }else{
+                    _sprite.facingDirection = false;
+                }
+            }
+        }
+
     }
     public class MarioSprite : ISprite
     {
@@ -28,12 +56,12 @@ public class Game1 : Game
         public movingState state;
         public int FrameNum;
         public Vector2 pos;
-
+        public bool facingDirection;//false is left, true is right
 
 
         public void Draw(SpriteBatch sb, Vector2 pos)
         {
-            if (this.state == movingState.right){
+            if (this.facingDirection == true){
                 sb.Draw(textureAtlas,
                 pos,
                 Frames[FrameNum],
@@ -81,6 +109,12 @@ public class Game1 : Game
                 }else{
                     FrameBuffer++;
                 }
+
+                if (this.state == movingState.right){
+                    facingDirection = true;
+                }else{
+                    facingDirection = false;  
+                }  
             }
 
             else if (this.state == movingState.up){ //GOING UP 
@@ -88,7 +122,6 @@ public class Game1 : Game
             }else if (this.state == movingState.down){ //GOING DOWN
                 FrameNum = 0;
             }
-
    
         }
 
@@ -96,13 +129,15 @@ public class Game1 : Game
         {
             this.textureAtlas = t;
             this.Frames = f;
-            FrameNum = 1;
-            pos = new Vector2(400, 200);
+            FrameNum = 1;//idle frame
+            pos = new Vector2(400, 200);//middle of screen
             FrameBuffer = 0;
             this.state = movingState.idle;
+            this.facingDirection = false;
         }
     }
     MarioSprite marioSprite = new MarioSprite(); // loaded in LoadContent()
+    Controller controller = null; // loaded in LoadContent()
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
     private SpriteFont _font;
@@ -133,33 +168,15 @@ public class Game1 : Game
             new Rectangle(120, 51, 22, 34),
             new Rectangle(85, 51, 22, 34)
         });
+        controller = new Controller(marioSprite); 
     }
 
     protected override void Update(GameTime gameTime)
     {
         if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-            Exit();
-        if(Keyboard.GetState().IsKeyDown(Keys.W)){
-            marioSprite.pos.Y -= 5; 
-            marioSprite.state = MarioSprite.movingState.up;
-        }
-        else if(Keyboard.GetState().IsKeyDown(Keys.S)){
-            marioSprite.pos.Y += 5; 
-            marioSprite.state = MarioSprite.movingState.down;
-        }
-        else if(Keyboard.GetState().IsKeyDown(Keys.A)){
-            marioSprite.pos.X -= 5; 
-            marioSprite.state = MarioSprite.movingState.left;
-        }
-        else if(Keyboard.GetState().IsKeyDown(Keys.D)){
-            marioSprite.pos.X += 5; 
-            marioSprite.state = MarioSprite.movingState.right;
-        }
-        else{
-            marioSprite.state = MarioSprite.movingState.idle;
-        }
-
-
+            Exit(); //escape key exits!
+        
+        controller.HandleInput();
         marioSprite.Update();
 
         base.Update(gameTime);
@@ -168,8 +185,6 @@ public class Game1 : Game
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
-
-        Rectangle spriteRect = new Rectangle(0, 0, 128, 128);
 
         _spriteBatch.Begin();
 

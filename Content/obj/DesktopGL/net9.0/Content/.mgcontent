@@ -4,8 +4,8 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>c:/Users/leoto/OneDrive/MonoGame/Content/fonts/font.spritefont</File>
-    <File>c:/Users/leoto/OneDrive/MonoGame/Content/images/mario.png</File>
+    <File>C:/Users/leoto/source/MonoGame/Content/fonts/font.spritefont</File>
+    <File>C:/Users/leoto/source/MonoGame/Content/images/mario.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />

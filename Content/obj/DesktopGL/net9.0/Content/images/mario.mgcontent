@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>c:/Users/leoto/OneDrive/MonoGame/Content/images/mario.png</SourceFile>
+  <SourceFile>C:/Users/leoto/source/MonoGame/Content/images/mario.png</SourceFile>
   <SourceTime>2026-09-08T12:24:10.2304813-04:00</SourceTime>
-  <DestFile>c:/Users/leoto/OneDrive/MonoGame/Content/bin/DesktopGL/Content/images/mario.xnb</DestFile>
-  <DestTime>2026-09-08T12:43:52.6179072-04:00</DestTime>
+  <DestFile>C:/Users/leoto/source/MonoGame/Content/bin/DesktopGL/Content/images/mario.xnb</DestFile>
+  <DestTime>2026-09-11T11:54:35.53153-04:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2026-08-14T17:50:10-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

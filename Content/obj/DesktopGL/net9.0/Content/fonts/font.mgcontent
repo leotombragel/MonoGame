@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>c:/Users/leoto/OneDrive/MonoGame/Content/fonts/font.spritefont</SourceFile>
+  <SourceFile>C:/Users/leoto/source/MonoGame/Content/fonts/font.spritefont</SourceFile>
   <SourceTime>2026-08-14T17:22:12-04:00</SourceTime>
-  <DestFile>c:/Users/leoto/OneDrive/MonoGame/Content/bin/DesktopGL/Content/fonts/font.xnb</DestFile>
-  <DestTime>2026-09-08T15:57:14.9020403-04:00</DestTime>
+  <DestFile>C:/Users/leoto/source/MonoGame/Content/bin/DesktopGL/Content/fonts/font.xnb</DestFile>
+  <DestTime>2026-09-11T11:54:35.5066594-04:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2026-08-14T17:50:10-04:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>
